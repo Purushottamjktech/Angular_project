@@ -1,0 +1,69 @@
+<div></div>
+
+<div class="container">
+
+  <!-- <div class="row">
+
+        <div class="col-md-12"> -->
+
+  <table class="table table-bordered">
+
+    <thead>
+
+      <tr>
+
+        <th>Name</th>
+
+        <th>Job title</th>
+
+        <th>City</th>
+
+        <th>Connection</th>
+
+        <th>Status</th>
+
+        <th>Action</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of items">
+
+        <td>{{item.name}}</td>
+
+        <td>{{item.jobtitle}}</td>
+
+        <td>{{item.city}}</td>
+
+        <td>{{item.connection}}</td>
+
+        <td [ngClass]="{'green' : item.status === 'Approved','red' : item.status !== 'Approved'}">{{item.status}}</td>
+
+        <td>
+
+          <button type="submit" class="btn btn-primary btn-sm" *ngIf="item.status === 'Pending'">Approve</button>
+
+          <button type="submit" class="btn btn-danger btn-sm" *ngIf="item.status === 'Pending'">Reject</button>
+
+          <a>View Details</a>
+
+        </td>
+
+      </tr>
+
+
+
+    </tbody>
+
+  </table>
+
+  <!-- </div>
+
+    </div> -->
+
+
+
+</div>
