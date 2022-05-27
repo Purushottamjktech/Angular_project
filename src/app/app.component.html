@@ -1,18 +1,27 @@
- <!-- <app-header></app-header> -->
- <div class="container">
+<!-- <app-header></app-header> -->
 
-    <app-header [titleName]="title" (updateTitleChild)="updateTitle($event)" [caseType]="Type"></app-header>
+<div class="container">
   
+  <app-header [titleName]="title" (updateTitleChild)="updateTitle($event)" [caseType]="Type"></app-header>
   
-  
-    <app-leave-managment (UpdateTypehandler)="updateType($event)"></app-leave-managment>
-  
-  
-  
-    <app-footer></app-footer>
-  
-  </div>
-<!-- <app-leave-managment></app-leave-managment> -->
-<!-- <app-table></app-table> -->
+<ul>
+  <li><a routerLink="table" routerLinkActive="highlight">Home</a></li>
+  <li><a routerLink="users" routerLinkActive="highlight" [routerLinkActiveOptions]="{exact:true}">users</a></li>
 
-<!-- <app-footer> </app-footer> -->
+</ul>
+
+
+<button (click)="goToUserModule('users')">go to user module</button>
+<router-outlet></router-outlet>
+
+<app-leave-managment (UpdateTypehandler)="updateType($event)"></app-leave-managment>
+
+
+
+<app-footer></app-footer>
+
+</div>
+
+
+
+

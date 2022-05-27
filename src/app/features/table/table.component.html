@@ -1,69 +1,152 @@
-<div></div>
+<!-- <h1>User want - {{brand}} brand</h1> -->
+<input type="text" required [(ngModel)]="leavetype" />
+<input type="text" required [(ngModel)]="leaveDays" />
 
-<div class="container">
 
-  <!-- <div class="row">
+<button (click)="gethandler()"> apply leave</button>
 
-        <div class="col-md-12"> -->
+<button (click)="getleaveLogs()">Display All Leave </button>
 
-  <table class="table table-bordered">
-
-    <thead>
-
-      <tr>
-
-        <th>Name</th>
-
-        <th>Job title</th>
-
-        <th>City</th>
-
-        <th>Connection</th>
-
-        <th>Status</th>
-
-        <th>Action</th>
-
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      <tr *ngFor="let item of items">
-
-        <td>{{item.name}}</td>
-
-        <td>{{item.jobtitle}}</td>
-
-        <td>{{item.city}}</td>
-
-        <td>{{item.connection}}</td>
-
-        <td [ngClass]="{'green' : item.status === 'Approved','red' : item.status !== 'Approved'}">{{item.status}}</td>
-
-        <td>
-
-          <button type="submit" class="btn btn-primary btn-sm" *ngIf="item.status === 'Pending'">Approve</button>
-
-          <button type="submit" class="btn btn-danger btn-sm" *ngIf="item.status === 'Pending'">Reject</button>
-
-          <a>View Details</a>
-
-        </td>
-
-      </tr>
+<button type="button" class="btn btn-success" (click)="onSaveEmployess()">save Data to Firebase</button>
+<button type="button" class="btn btn-warning" (click)="onFetchEmployess()">Fetch Records</button>
 
 
 
-    </tbody>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-  </table>
+<link rel="stylesheet" type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
 
-  <!-- </div>
+<link rel="stylesheet" type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+
+<link rel="stylesheet" type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+
+<link rel="stylesheet" type="text/css"
+  href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+<div>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="search" search Employee name></label>
+          <input type="email" class="form-control" id="search" placeholder="Search Employee Status"
+            [(ngModel)]="nameSearch">
+        </div>
+        <div>
+     
+        </div>
+      </div>
+      <div class="col">
+        <div class="p-3"></div>
+      </div>
+      <table class="table table-bordered">
+
+        <thead>
+
+          <tr>
+            <th> ID</th>
+            <th>Name</th>
+
+            <th>Job title</th>
+
+            <th>City</th>
+
+            <th>Connection</th>
+
+            <th>Status</th>
+
+            <th>Action</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr *ngFor="let item of items| filter:nameSearch">
+
+            <td>{{item.id}}</td>
+            <td class="text-primary"> {{item.name}}</td>
+
+            <td class="text-primary">{{item.jobtitle}}</td>
+
+            <td class="text-primary">{{item.city | uppercase}}</td>
+
+            <td class="text-primary">{{item.connection}}</td>
+
+            <td [ngClass]="{'green' : item.status === 'Approved','red' : item.status !== 'Approved'}">{{item.status}}
+            </td>
+
+            <td>
+
+              <button type="submit" class="btn btn-success btn-sm" (click)="onApprove()" *ngIf="item.status === 'Pending'">Approve</button>
+
+              <button type="submit" class="btn btn-danger btn-sm" (click)="onReject()" *ngIf="item.status === 'Pending'">Reject</button>
+
+              <a href="#" class="link-success">View Details</a>
+              <!-- <td>{{obj}}</td> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <button (click)="btnClick()" class="btn btn-success">view details</button>
+      </div>
+
+      <!-- </div>
 
     </div> -->
+    </div>
 
 
+      <!-- </div>  -->
 
-</div>
+     
+
+    <!-- for button to view details line-191.
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Check Employee details
+    </button> -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>{{empModalDetails.id}}</p>
+            <p>{{empModalDetails.name}}</p>
+            <p>{{empModalDetails.city}}</p>
+            <p>{{empModalDetails.jobtitle}}</p>
+            <p>{{empModalDetails.connection}}</p>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- (click) ="onclick($event)" -->
+
+    <div class="spinner-grow" *ngIf="apijson.length===0" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <!-- <div *ngFor="let abc of apijson;let i=index">
+    <div class="panel panel-success" *ngIf="i<10">
+      <div class="panel-heading">{{abc.id}}</div>
+      <div class="panel-body">{{abc.title}}</div>
+    </div>
+    </div> -->
